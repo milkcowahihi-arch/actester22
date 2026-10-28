@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "package": "com.oscarclient.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "MixinGameRenderer",
+    "MixinClientPlayerEntity",
+    "MixinInGameHud"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
