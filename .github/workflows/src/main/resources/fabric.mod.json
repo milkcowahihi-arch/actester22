@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "oscarclient",
+  "version": "${version}",
+  "name": "Oscar Client",
+  "description": "Auto sand farming mod for KingSMP server",
+  "authors": ["YourName"],
+  "contact": {
+    "sources": "https://github.com/YourUsername/oscar-client"
+  },
+  "license": "MIT",
+  "icon": "assets/oscarclient/icon.png",
+
+  "environment": "client",
+
+  "entrypoints": {
+    "client": ["com.oscarclient.core.OscarClient"]
+  },
+
+  "mixins": ["oscarclient.mixins.json"],
+
+  "depends": {
+    "fabricloader": ">=0.15.11",
+    "fabric-api":   "*",
+    "minecraft":    "~1.21.1",
+    "java":         ">=21"
+  }
+}

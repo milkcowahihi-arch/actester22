@@ -1,0 +1,45 @@
+plugins {
+	id 'fabric-loom' version '1.6-SNAPSHOT'
+	id 'maven-publish'
+}
+
+version = project.mod_version
+group   = project.maven_group
+
+base { archivesName = project.archives_base_name }
+
+repositories {
+	maven { url 'https://masa.dy.fi/maven' }        // Masa mods (Baritone/Litematica style)
+	maven { url 'https://api.modrinth.com/maven' }   // Modrinth mods
+	maven { url 'https://jitpack.io' }
+}
+
+dependencies {
+	// Minecraft + Fabric
+	minecraft         "com.mojang:minecraft:${project.minecraft_version}"
+	mappings          "net.fabricmc:yarn:${project.yarn_mappings}:v2"
+	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+
+	// Baritone (pathfinding / auto-dig)
+	// Tải thủ công: https://github.com/cabaletta/baritone/releases
+	// đặt file baritone-unoptimized-fabric-*.jar vào thư mục libs/
+	// rồi bỏ comment dòng dưới:
+	// implementation fileTree(dir: 'libs', include: ['*.jar'])
+}
+
+processResources {
+	inputs.property "version", project.version
+	filteringCharset "UTF-8"
+	filesMatching("fabric.mod.json") {
+		expand "version": project.version
+	}
+}
+
+java {
+	withSourcesJar()
+	sourceCompatibility  = JavaVersion.VERSION_21
+	targetCompatibility  = JavaVersion.VERSION_21
+}
+
+jar { from("LICENSE") { rename { "${it}_${project.archives_base_name}" } } }
